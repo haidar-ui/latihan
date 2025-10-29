@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Soal Kalkulus Lanjutan</title>
+    
+    <!-- KaTeX (untuk render rumus matematika LaTeX) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMviyvieHnMg5MSaIm9RJfj2tkzTQRgdxfmE2GEGvKxBYETD4" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmFAILkIwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    
+    <!-- Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Times+New+Roman&display=swap" rel="stylesheet">
+
+    <!-- CSS untuk Layout A4 dan Print -->
+    <style>
+        /* Mengatur font dasar */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            background-color: #e0e0e0; /* Latar abu-abu di luar kertas */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Kontainer utama yang menyerupai kertas A4 */
+        .page {
+            width: 210mm; /* Lebar A4 */
+            min-height: 297mm; /* Tinggi A4 */
+            padding: 2cm; /* Margin standar kertas */
+            margin: 1cm auto; /* Centering di layar */
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box; /* Agar padding termasuk dalam width/height */
+        }
+
+        /* Header untuk Nama, NIM, dll. */
+        .worksheet-header {
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .worksheet-header h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+            color: #333;
+        }
+        .student-info {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-top: 10px;
+        }
+        .student-info span {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* Judul setiap topik */
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+
+        /* Daftar soal */
+        .soal-list, .jawaban-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+            font-size: 14px;
+        }
+        .soal-list li, .jawaban-list li {
+            margin-bottom: 12px;
+            /* Mencegah soal terpotong di tengah saat print */
+            break-inside: avoid;
+        }
+
+        /* Kunci Jawaban (halaman terpisah) */
+        #kunci-jawaban {
+            /* Memaksa halaman baru saat print */
+            break-before: page;
+        }
+
+        /* CSS KHUSUS PRINT */
+        @media print {
+            body {
+                background-color: white; /* Hapus latar abu-abu */
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                width: 100%;
+                min-height: auto;
+                margin: 0;
+                padding: 0;
+                box-shadow: none; /* Hapus bayangan */
+                border: none;
+            }
+            @page {
+                size: A4; /* Tentukan ukuran halaman A4 */
+                margin: 2cm; /* Margin cetak */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Halaman 1: Lembar Soal -->
+    <div class="page" id="lembar-soal">
+        <header class="worksheet-header">
+            <div>
+                <h1>Latihan Soal: Kalkulus Lanjutan</h1>
+                <p style="margin: 0; font-size: 14px;">Fungsi Beberapa Variabel, Domain, Turunan Parsial, & Diferensial</p>
+            </div>
+            <div class="student-info">
+                <strong>Nama:</strong> <span></span><br>
+                <strong>NIM/Kelas:</strong> <span></span><br>
+                <strong>Tanggal:</strong> <span></span>
+            </div>
+        </header>
+
+        <main>
+            <!-- Topik 1: Fungsi dari Beberapa Variabel -->
+            <section>
+                <h2>Topik 1: Fungsi dari Beberapa Variabel</h2>
+                <ol class="soal-list">
+                    <li>Tuliskan volume $V$ sebuah kerucut sebagai fungsi dari jari-jari alas $r$ dan tingginya $h$.</li>
+                    <li>Tuliskan hipotenusa $c$ dari segitiga siku-siku sebagai fungsi dari dua sisi lainnya, $a$ dan $b$.</li>
+                    <li>Sebuah kotak tanpa tutup memiliki alas persegi dengan sisi $x$ dan tinggi $y$. Tuliskan luas permukaan $A$ sebagai fungsi dari $x$ dan $y$.</li>
+                    <li>Diberikan $f(x, y) = x^2 + 3xy - y^2$. Tentukan $f(2, 1)$.</li>
+                    <li>Diberikan $f(x, y) = \frac{x}{y^2}$. Tentukan $f(8, 2)$.</li>
+                    <li>Diberikan $g(x, y, z) = \sqrt{x^2 + y^2 + z^2}$. Tentukan $g(1, 2, 2)$.</li>
+                    <li>Diberikan $h(p, q) = p \ln(q)$. Tentukan $h(5, e)$.</li>
+                    <li>Evaluasi $f(x, y) = \sin(x+y)$ pada titik $(\frac{\pi}{2}, 0)$.</li>
+                    <li>Evaluasi $f(x, y) = e^{-x} \cos(y)$ pada titik $(0, \pi)$.</li>
+                    <li>Identifikasi variabel independen dan dependen dari fungsi $P(K, L) = 1.01 K^{0.25} L^{0.75}$ (Fungsi Produksi Cobb-Douglas).</li>
+                </ol>
+            </section>
+
+            <!-- Topik 2: Domain -->
+            <section>
+                <h2>Topik 2: Domain</h2>
+                <ol class="soal-list">
+                    <li>Tentukan domain dari $f(x, y) = 10x + 5y - 100$.</li>
+                    <li>Tentukan domain dari $f(x, y) = x^2 + y^2 + 5$.</li>
+                    <li>Tentukan dan deskripsikan domain dari $f(x, y) = \sqrt{x - 1}$.</li>
+                    <li>Tentukan dan deskripsikan domain dari $f(x, y) = \sqrt{y - x^2}$.</li>
+                    <li>Tentukan dan deskripsikan domain dari $f(x, y) = \sqrt{16 - x^2 - y^2}$.</li>
+                    <li>Tentukan domain dari $f(x, y) = \frac{1}{x - y}$.</li>
+                    <li>Tentukan domain dari $f(x, y) = \frac{5x}{x^2 + y^2}$.</li>
+                    <li>Tentukan dan deskripsikan domain dari $f(x, y) = \ln(x + y)$.</li>
+                    <li>Tentukan dan deskripsikan domain dari $f(x, y) = \ln(y^2 - x)$.</li>
+                    <li>Tentukan domain dari $f(x, y) = \frac{\sqrt{x}}{y}$.</li>
+                </ol>
+            </section>
+
+            <!-- Topik 3: Pengantar Turunan Parsial (Konseptual) -->
+            <section>
+                <h2>Topik 3: Pengantar Turunan Parsial (Konseptual)</h2>
+                <ol class="soal-list">
+                    <li>Jelaskan dengan kata-kata Anda sendiri, apa yang direpresentasikan oleh $\frac{\partial f}{\partial x}$?</li>
+                    <li>Saat menghitung $\frac{\partial f}{\partial y}$ dari $f(x, y)$, variabel apa yang kita anggap sebagai konstanta?</li>
+                    <li>Benar atau Salah: $\frac{\partial}{\partial x}(x^2 y) = 2xy$.</li>
+                    <li>Benar atau Salah: $\frac{\partial}{\partial y}(x^2 y) = x^2$.</li>
+                    <li>Benar atau Salah: $\frac{\partial}{\partial x}(y^2 + 5) = 2y$.</li>
+                    <li>Jika $f(x, y)$ adalah suhu di titik $(x, y)$ pada plat logam, apa arti dari $f_x(1, 2) = 3$?</li>
+                    <li>Jika $f(x, y)$ adalah ketinggian gunung di $(x, y)$, apa arti $f_y(a, b) = -0.1$?</li>
+                    <li>Apa notasi lain yang umum digunakan untuk $f_y(x, y)$?</li>
+                    <li>Jika $f(x, y) = g(x) + h(y)$, apa bentuk dari $\frac{\partial f}{\partial x}$?</li>
+                    <li>Jika $f(x, y) = c$ (sebuah konstanta), apa $\frac{\partial f}{\partial x}$?</li>
+                </ol>
+            </section>
+
+            <!-- Topik 4: Turunan Parsial (Kalkulasi) -->
+            <section>
+                <h2>Topik 4: Turunan Parsial (Kalkulasi)</h2>
+                <ol class="soal-list">
+                    <li>Tentukan $f_x$ dan $f_y$ jika $f(x, y) = 5x^4 y^3 + 2x - y$.</li>
+                    <li>Tentukan $f_x$ dan $f_y$ jika $f(x, y) = \cos(x^2 y)$.</li>
+                    <li>Tentukan $f_x$ dan $f_y$ jika $f(x, y) = \frac{x}{y}$.</li>
+                    <li>Tentukan $f_x$ dan $f_y$ jika $f(x, y) = e^{xy} + \ln(x)$.</li>
+                    <li>Tentukan $f_x(1, 2)$ jika $f(x, y) = 3x^2 y + y^3$.</li>
+                    <li>Tentukan $f_y(0, \pi)$ jika $f(x, y) = x^2 \sin(y)$.</li>
+                    <li>Tentukan $f_x$, $f_y$, dan $f_z$ jika $f(x, y, z) = x \sin(yz)$.</li>
+                    <li>Tentukan $f_x$, $f_y$, dan $f_z$ jika $f(x, y, z) = x^2 e^{yz}$.</li>
+                    <li>Tentukan $\frac{\partial z}{\partial x}$ jika $z = (x^2 + y^2)^{-1}$.</li>
+                    <li>Tentukan $\frac{\partial z}{\partial y}$ jika $z = \arctan(\frac{x}{y})$.</li>
+                </ol>
+            </section>
+
+            <!-- Topik 5: Diferensial Total -->
+            <section>
+                <h2>Topik 5: Diferensial Total</h2>
+                <ol class="soal-list">
+                    <li>Tentukan diferensial total $dz$ untuk $z = x^3 y^2$.</li>
+                    <li>Tentukan diferensial total $dz$ untuk $z = x \ln(y)$.</li>
+                    <li>Tentukan diferensial total $dw$ untuk $w = x^2 y z^3$.</li>
+                    <li>Gunakan diferensial total $dz$ untuk mengestimasi perubahan $\Delta z$ dari $f(x, y) = x^2 + 2y^2$ saat $(x, y)$ berubah dari $(1, 1)$ ke $(1.05, 0.95)$.</li>
+                    <li>Gunakan diferensial total $dz$ untuk mengestimasi perubahan $\Delta z$ dari $f(x, y) = \sqrt{x^2 + y^2}$ saat $(x, y)$ berubah dari $(3, 4)$ ke $(3.01, 3.98)$.</li>
+                    <li>Radius $r$ dan tinggi $h$ sebuah silinder diukur sebagai $r=5$ cm dan $h=10$ cm. Terdapat error pengukuran maksimum $\pm 0.1$ cm pada $r$ dan $\pm 0.05$ cm pada $h$. Gunakan diferensial total untuk mengestimasi error maksimum $\Delta V$ dalam perhitungan volume $V = \pi r^2 h$.</li>
+                    <li>Resistansi total $R$ dari dua resistor $R_1$ dan $R_2$ yang terhubung paralel adalah $\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}$. Tentukan $dR$ dalam terminologi $R_1, R_2, dR_1, dR_2$. (Hint: diferensialkan secara implisit).</li>
+                    <li>Sisi $x$ dan $y$ dari sebuah persegi panjang adalah $x=4$ m dan $y=3$ m. Estimasikan error maksimum dalam perhitungan luas $A=xy$ jika error pengukuran $x$ dan $y$ adalah $\pm 0.01$ m.</li>
+                    <li>Tentukan $dz$ jika $z = e^x \tan(y)$.</li>
+                    <li>Jika $z = f(x, y)$, tuliskan rumus umum untuk diferensial total $dz$.</li>
+                </ol>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Halaman 2: Kunci Jawaban (akan otomatis pindah ke halaman baru saat print) -->
+    <div class="page" id="kunci-jawaban">
+        <header class="worksheet-header">
+            <div>
+                <h1>Kunci Jawaban</h1>
+            </div>
+        </header>
+
+        <main>
+            <!-- Jawaban Topik 1 -->
+            <section>
+                <h2>Topik 1: Fungsi dari Beberapa Variabel</h2>
+                <ol class="jawaban-list">
+                    <li>$V(r, h) = \frac{1}{3} \pi r^2 h$</li>
+                    <li>$c(a, b) = \sqrt{a^2 + b^2}$</li>
+                    <li>$A(x, y) = x^2 + 4xy$ (Alas $x^2$, 4 sisi $xy$)</li>
+                    <li>$f(2, 1) = (2)^2 + 3(2)(1) - (1)^2 = 4 + 6 - 1 = 9$</li>
+                    <li>$f(8, 2) = \frac{8}{(2)^2} = \frac{8}{4} = 2$</li>
+                    <li>$g(1, 2, 2) = \sqrt{1^2 + 2^2 + 2^2} = \sqrt{1 + 4 + 4} = \sqrt{9} = 3$</li>
+                    <li>$h(5, e) = 5 \ln(e) = 5(1) = 5$</li>
+                    <li>$f(\frac{\pi}{2}, 0) = \sin(\frac{\pi}{2} + 0) = \sin(\frac{\pi}{2}) = 1$</li>
+                    <li>$f(0, \pi) = e^{-0} \cos(\pi) = (1)(-1) = -1$</li>
+                    <li>Independen: $K$ (Modal) dan $L$ (Tenaga Kerja). Dependen: $P$ (Produksi).</li>
+                </ol>
+            </section>
+
+            <!-- Jawaban Topik 2 -->
+            <section>
+                <h2>Topik 2: Domain</h2>
+                <ol class="jawaban-list">
+                    <li>$D = \{(x, y) | x \in \mathbb{R}, y \in \mathbb{R}\}$ (Seluruh bidang $xy$)</li>
+                    <li>$D = \{(x, y) | x \in \mathbb{R}, y \in \mathbb{R}\}$ (Seluruh bidang $xy$)</li>
+                    <li>$x - 1 \ge 0 \implies x \ge 1$. $D = \{(x, y) | x \ge 1\}$ (Setengah bidang di kanan $x=1$)</li>
+                    <li>$y - x^2 \ge 0 \implies y \ge x^2$. $D = \{(x, y) | y \ge x^2\}$ (Region di atas parabola $y=x^2$)</li>
+                    <li>$16 - x^2 - y^2 \ge 0 \implies x^2 + y^2 \le 16$. $D = \{(x, y) | x^2 + y^2 \le 16\}$ (Lingkaran radius 4, termasuk batas)</li>
+                    <li>$x - y \neq 0 \implies y \neq x$. $D = \{(x, y) | y \neq x\}$ (Seluruh bidang $xy$ kecuali garis $y=x$)</li>
+                    <li>$x^2 + y^2 \neq 0$. Ini hanya terjadi di (0,0). $D = \{(x, y) | (x, y) \neq (0, 0)\}$ (Seluruh bidang $xy$ kecuali titik asal)</li>
+                    <li>$x + y > 0 \implies y > -x$. $D = \{(x, y) | y > -x\}$ (Setengah bidang di atas garis $y=-x$)</li>
+                    <li>$y^2 - x > 0 \implies x < y^2$. $D = \{(x, y) | x < y^2\}$ (Region di kiri parabola $x=y^2$)</li>
+                    <li>Perlu $x \ge 0$ (karena akar) dan $y \neq 0$ (karena penyebut). $D = \{(x, y) | x \ge 0, y \neq 0\}$</li>
+                </ol>
+            </section>
+
+            <!-- Jawaban Topik 3 -->
+            <section>
+                <h2>Topik 3: Pengantar Turunan Parsial (Konseptual)</h2>
+                <ol class="jawaban-list">
+                    <li>Laju perubahan fungsi $f$ terhadap $x$, dengan menganggap $y$ konstan. Secara geometris, ini adalah kemiringan garis singgung pada permukaan $z=f(x,y)$ di irisan bidang $y=konstan$.</li>
+                    <li>Variabel $x$ (dan $z$ jika ada).</li>
+                    <li>Benar. $y$ diperlakukan sebagai koefisien konstan dari $x^2$.</li>
+                    <li>Benar. $x^2$ diperlakukan sebagai koefisien konstan dari $y$.</li>
+                    <li>Salah. Turunan dari konstanta (karena hanya bergantung $y$) terhadap $x$ adalah 0.</li>
+                    <li>Pada titik $(1, 2)$, jika kita bergerak ke arah $x$ positif, suhu meningkat dengan laju 3 derajat per unit.</li>
+                    <li>Pada titik $(a, b)$, jika kita bergerak ke arah $y$ positif (misal, Utara), ketinggian menurun (curam ke bawah) dengan laju 0.1 meter per unit.</li>
+                    <li>$\frac{\partial f}{\partial y}$, $\frac{\partial z}{\partial y}$ (jika $z=f(x,y)$), $D_y f$.</li>
+                    <li>$\frac{\partial f}{\partial x} = \frac{d}{dx}(g(x)) + \frac{\partial}{\partial x}(h(y)) = g'(x) + 0 = g'(x)$.</li>
+                    <li>$\frac{\partial f}{\partial x} = 0$, karena $c$ adalah konstanta terhadap $x$.</li>
+                </ol>
+            </section>
+
+            <!-- Jawaban Topik 4 -->
+            <section>
+                <h2>Topik 4: Turunan Parsial (Kalkulasi)</h2>
+                <ol class="jawaban-list">
+                    <li>$f_x = 20x^3 y^3 + 2$, $f_y = 15x^4 y^2 - 1$</li>
+                    <li>$f_x = -\sin(x^2 y) \cdot (2xy) = -2xy \sin(x^2 y)$, $f_y = -\sin(x^2 y) \cdot (x^2) = -x^2 \sin(x^2 y)$</li>
+                    <li>$f_x = \frac{1}{y}$, $f_y = -\frac{x}{y^2}$</li>
+                    <li>$f_x = e^{xy} \cdot y + \frac{1}{x}$, $f_y = e^{xy} \cdot x + 0 = x e^{xy}$</li>
+                    <li>$f_x = 6xy$. $f_x(1, 2) = 6(1)(2) = 12$.</li>
+                    <li>$f_y = x^2 \cos(y)$. $f_y(0, \pi) = (0)^2 \cos(\pi) = 0$.</li>
+                    <li>$f_x = \sin(yz)$, $f_y = x \cos(yz) \cdot z = xz \cos(yz)$, $f_z = x \cos(yz) \cdot y = xy \cos(yz)$</li>
+                    <li>$f_x = 2x e^{yz}$, $f_y = x^2 e^{yz} \cdot z = x^2 z e^{yz}$, $f_z = x^2 e^{yz} \cdot y = x^2 y e^{yz}$</li>
+                    <li>$\frac{\partial z}{\partial x} = -1(x^2 + y^2)^{-2} \cdot (2x) = \frac{-2x}{(x^2 + y^2)^2}$</li>
+                    <li>$\frac{\partial z}{\partial y} = \frac{1}{1 + (x/y)^2} \cdot \left(\frac{-x}{y^2}\right) = \frac{y^2}{y^2 + x^2} \cdot \left(\frac{-x}{y^2}\right) = \frac{-x}{x^2 + y^2}$</li>
+                </ol>
+            </section>
+
+            <!-- Jawaban Topik 5 -->
+            <section>
+                <h2>Topik 5: Diferensial Total</h2>
+                <ol class="jawaban-list">
+                    <li>$dz = (3x^2 y^2) dx + (2x^3 y) dy$</li>
+                    <li>$dz = (1 \cdot \ln(y)) dx + (x \cdot \frac{1}{y}) dy = \ln(y) dx + \frac{x}{y} dy$</li>
+                    <li>$dw = (2xy z^3) dx + (x^2 z^3) dy + (3x^2 y z^2) dz$</li>
+                    <li>$dz = (2x) dx + (4y) dy$. Pada $(1, 1)$, $dx = 0.05$, $dy = -0.05$. $dz = (2(1))(0.05) + (4(1))(-0.05) = 0.1 - 0.2 = -0.1$.</li>
+                    <li>$f_x = \frac{x}{\sqrt{x^2+y^2}}$, $f_y = \frac{y}{\sqrt{x^2+y^2}}$. Pada (3, 4), $\sqrt{x^2+y^2}=5$. $f_x = 3/5$, $f_y = 4/5$. $dx = 0.01$, $dy = -0.02$. $dz = (\frac{3}{5})(0.01) + (\frac{4}{5})(-0.02) = \frac{0.03 - 0.08}{5} = \frac{-0.05}{5} = -0.01$.</li>
+                    <li>$V_r = 2\pi rh$, $V_h = \pi r^2$. $V_r(5, 10) = 2\pi(5)(10) = 100\pi$. $V_h(5, 10) = \pi(5)^2 = 25\pi$. $dV = (100\pi) dr + (25\pi) dh = 100\pi(0.1) + 25\pi(0.05) = 10\pi + 1.25\pi = 11.25\pi$ cm$^3$.</li>
+                    <li>Diferensialkan: $-R^{-2} dR = -R_1^{-2} dR_1 - R_2^{-2} dR_2$. Kalikan $-R^2$: $dR = (\frac{R}{R_1})^2 dR_1 + (\frac{R}{R_2})^2 dR_2$.</li>
+                    <li>$dA = A_x dx + A_y dy = y dx + x dy$. $dA = (3)(0.01) + (4)(0.01) = 0.03 + 0.04 = 0.07$ m$^2$.</li>
+                    <li>$dz = (e^x \tan(y)) dx + (e^x \sec^2(y)) dy$</li>
+                    <li>$dz = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy$</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script untuk menjalankan KaTeX -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ],
+                // Pastikan KaTeX tidak mengabaikan tag <code>
+                ignoredTags: ["script", "noscript", "style", "textarea", "pre", "option"]
+            });
+        });
+    </script>
+</body>
+</html>
