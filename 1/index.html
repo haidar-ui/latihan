@@ -10,10 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmFAILkIwi" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
     
-    <!-- Font (Inter) -->
+    <!-- Font (Times New Roman & Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Times+New+Roman&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Times+New+Roman&display=swap" rel="stylesheet">
 
     <!-- CSS untuk Layout A4 dan Print -->
     <style>
@@ -26,6 +26,8 @@
             padding: 0;
             display: flex;
             justify-content: center;
+            flex-direction: column; /* Mengatur .page secara vertikal */
+            align-items: center;
         }
 
         /* Kontainer utama yang menyerupai kertas A4 */
@@ -37,6 +39,11 @@
             background: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             box-sizing: border-box; /* Agar padding termasuk dalam width/height */
+        }
+        
+        /* Halaman kedua (pembahasan) tidak perlu min-height */
+        #section-pembahasan {
+            min-height: auto; 
         }
 
         /* Header untuk Nama, NIM, dll. */
@@ -74,7 +81,20 @@
             border-bottom: 1px solid #eee;
             padding-bottom: 5px;
             margin-top: 25px;
+            color: #000;
         }
+        
+        /* Judul Kunci Jawaban */
+        .answer-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+
 
         /* Daftar soal */
         .soal-list, .jawaban-list {
@@ -84,15 +104,21 @@
         }
         .soal-list li, .jawaban-list li {
             margin-bottom: 12px;
-            /* Mencegah soal terpotong di tengah saat print */
+            /* Mencegah soal/jawaban terpotong di tengah saat print */
             break-inside: avoid;
         }
 
-        /* Kunci Jawaban (halaman terpisah) */
-        #kunci-jawaban {
-            /* Memaksa halaman baru saat print */
-            break-before: page;
+        /* Konten Jawaban/Pembahasan */
+        .jawaban-list li .kunci {
+            font-weight: bold;
+            color: #2c5282; /* Warna biru gelap agar terlihat jelas */
         }
+
+        /* PENTING: Pembahasan terlihat di layar */
+        #section-pembahasan {
+            display: block;
+        }
+
 
         /* CSS KHUSUS PRINT */
         @media print {
@@ -109,6 +135,11 @@
                 box-shadow: none; /* Hapus bayangan */
                 border: none;
             }
+            /* Memaksa Kunci Jawaban mulai di halaman baru */
+            #section-pembahasan {
+                display: block !important; /* Pastikan terlihat saat print */
+                break-before: page; /* Ini kuncinya */
+            }
             @page {
                 size: A4; /* Tentukan ukuran halaman A4 */
                 margin: 2cm; /* Margin cetak */
@@ -118,8 +149,8 @@
 </head>
 <body>
 
-    <!-- Halaman 1: Lembar Soal -->
-    <div class="page" id="lembar-soal">
+    <!-- SECTION SOAL -->
+    <div class="page" id="section-soal">
         <header class="worksheet-header">
             <div>
                 <h1>Latihan Soal: Kalkulus Lanjutan</h1>
@@ -135,24 +166,24 @@
         <main>
             <!-- Topik 1: Fungsi dari Beberapa Variabel -->
             <section>
-                <h2>Topik 1: Fungsi dari Beberapa Variabel</h2>
+                <h2>Topik 1: Fungsi dari Beberapa Variabel (10 Soal)</h2>
                 <ol class="soal-list">
                     <li>Tuliskan volume $V$ sebuah kerucut sebagai fungsi dari jari-jari alas $r$ dan tingginya $h$.</li>
                     <li>Tuliskan hipotenusa $c$ dari segitiga siku-siku sebagai fungsi dari dua sisi lainnya, $a$ dan $b$.</li>
                     <li>Sebuah kotak tanpa tutup memiliki alas persegi dengan sisi $x$ dan tinggi $y$. Tuliskan luas permukaan $A$ sebagai fungsi dari $x$ dan $y$.</li>
-                    <li>Diberikan $f(x, y) = x^2 + 3xy - y^2$. Tentukan $f(2, 1)$.</li>
-                    <li>Diberikan $f(x, y) = \frac{x}{y^2}$. Tentukan $f(8, 2)$.</li>
-                    <li>Diberikan $g(x, y, z) = \sqrt{x^2 + y^2 + z^2}$. Tentukan $g(1, 2, 2)$.</li>
-                    <li>Diberikan $h(p, q) = p \ln(q)$. Tentukan $h(5, e)$.</li>
+                    <li>Diberikan $f(x, y) = x^2 + 3xy - y^2$. Tentukan nilai $f(2, 1)$.</li>
+                    <li>Diberikan $f(x, y) = \frac{x}{y^2}$. Tentukan nilai $f(8, 2)$.</li>
+                    <li>Diberikan $g(x, y, z) = \sqrt{x^2 + y^2 + z^2}$. Tentukan nilai $g(1, 2, 2)$.</li>
+                    <li>Diberikan $h(p, q) = p \ln(q)$. Tentukan nilai $h(5, e)$.</li>
                     <li>Evaluasi $f(x, y) = \sin(x+y)$ pada titik $(\frac{\pi}{2}, 0)$.</li>
                     <li>Evaluasi $f(x, y) = e^{-x} \cos(y)$ pada titik $(0, \pi)$.</li>
-                    <li>Identifikasi variabel independen dan dependen dari fungsi $P(K, L) = 1.01 K^{0.25} L^{0.75}$ (Fungsi Produksi Cobb-Douglas).</li>
+                    <li>Identifikasi variabel independen dan dependen dari fungsi $P(K, L) = 1.01 K^{0.25} L^{0.75}$.</li>
                 </ol>
             </section>
 
             <!-- Topik 2: Domain -->
             <section>
-                <h2>Topik 2: Domain</h2>
+                <h2>Topik 2: Domain (10 Soal)</h2>
                 <ol class="soal-list">
                     <li>Tentukan domain dari $f(x, y) = 10x + 5y - 100$.</li>
                     <li>Tentukan domain dari $f(x, y) = x^2 + y^2 + 5$.</li>
@@ -169,24 +200,24 @@
 
             <!-- Topik 3: Pengantar Turunan Parsial (Konseptual) -->
             <section>
-                <h2>Topik 3: Pengantar Turunan Parsial (Konseptual)</h2>
+                <h2>Topik 3: Pengantar Turunan Parsial (10 Soal)</h2>
                 <ol class="soal-list">
-                    <li>Jelaskan dengan kata-kata Anda sendiri, apa yang direpresentasikan oleh $\frac{\partial f}{\partial x}$?</li>
+                    <li>Jelaskan secara konseptual, apa yang diukur oleh $\frac{\partial f}{\partial x}$ pada suatu titik $(x_0, y_0)$.</li>
                     <li>Saat menghitung $\frac{\partial f}{\partial y}$ dari $f(x, y)$, variabel apa yang kita anggap sebagai konstanta?</li>
-                    <li>Benar atau Salah: $\frac{\partial}{\partial x}(x^2 y) = 2xy$.</li>
-                    <li>Benar atau Salah: $\frac{\partial}{\partial y}(x^2 y) = x^2$.</li>
-                    <li>Benar atau Salah: $\frac{\partial}{\partial x}(y^2 + 5) = 2y$.</li>
-                    <li>Jika $f(x, y)$ adalah suhu di titik $(x, y)$ pada plat logam, apa arti dari $f_x(1, 2) = 3$?</li>
-                    <li>Jika $f(x, y)$ adalah ketinggian gunung di $(x, y)$, apa arti $f_y(a, b) = -0.1$?</li>
-                    <li>Apa notasi lain yang umum digunakan untuk $f_y(x, y)$?</li>
-                    <li>Jika $f(x, y) = g(x) + h(y)$, apa bentuk dari $\frac{\partial f}{\partial x}$?</li>
-                    <li>Jika $f(x, y) = c$ (sebuah konstanta), apa $\frac{\partial f}{\partial x}$?</li>
+                    <li>Hitung $\frac{\partial}{\partial x}(y^3 + 2x^2 y)$.</li>
+                    <li>Hitung $\frac{\partial}{\partial y}(y^3 + 2x^2 y)$.</li>
+                    <li>Jika $f(x, y)$ adalah suhu pada plat logam, interpretasikan makna dari $f_x(1, 2) = 5$ dalam konteks suhu.</li>
+                    <li>Apa notasi lain yang umum digunakan untuk $f_x(x, y)$ selain $\frac{\partial f}{\partial x}$?</li>
+                    <li>Benar atau Salah: Turunan parsial dari fungsi multivariabel terhadap salah satu variabelnya adalah sebuah fungsi bivariabel.</li>
+                    <li>Jika $f(x, y) = g(x) \cdot h(y)$, apa bentuk dari $\frac{\partial f}{\partial x}$?</li>
+                    <li>Tentukan $\frac{\partial}{\partial y}(\sin(5))$.</li>
+                    <li>Jika fungsi $z=f(x, y)$ mendefinisikan permukaan di ruang 3D, $\frac{\partial z}{\partial x}$ adalah kemiringan (slope) dari kurva perpotongan permukaan dengan bidang apa?</li>
                 </ol>
             </section>
 
             <!-- Topik 4: Turunan Parsial (Kalkulasi) -->
             <section>
-                <h2>Topik 4: Turunan Parsial (Kalkulasi)</h2>
+                <h2>Topik 4: Turunan Parsial (Kalkulasi) (10 Soal)</h2>
                 <ol class="soal-list">
                     <li>Tentukan $f_x$ dan $f_y$ jika $f(x, y) = 5x^4 y^3 + 2x - y$.</li>
                     <li>Tentukan $f_x$ dan $f_y$ jika $f(x, y) = \cos(x^2 y)$.</li>
@@ -203,29 +234,32 @@
 
             <!-- Topik 5: Diferensial Total -->
             <section>
-                <h2>Topik 5: Diferensial Total</h2>
+                <h2>Topik 5: Diferensial Total (10 Soal)</h2>
                 <ol class="soal-list">
                     <li>Tentukan diferensial total $dz$ untuk $z = x^3 y^2$.</li>
                     <li>Tentukan diferensial total $dz$ untuk $z = x \ln(y)$.</li>
                     <li>Tentukan diferensial total $dw$ untuk $w = x^2 y z^3$.</li>
                     <li>Gunakan diferensial total $dz$ untuk mengestimasi perubahan $\Delta z$ dari $f(x, y) = x^2 + 2y^2$ saat $(x, y)$ berubah dari $(1, 1)$ ke $(1.05, 0.95)$.</li>
                     <li>Gunakan diferensial total $dz$ untuk mengestimasi perubahan $\Delta z$ dari $f(x, y) = \sqrt{x^2 + y^2}$ saat $(x, y)$ berubah dari $(3, 4)$ ke $(3.01, 3.98)$.</li>
-                    <li>Radius $r$ dan tinggi $h$ sebuah silinder diukur sebagai $r=5$ cm dan $h=10$ cm. Terdapat error pengukuran maksimum $\pm 0.1$ cm pada $r$ dan $\pm 0.05$ cm pada $h$. Gunakan diferensial total untuk mengestimasi error maksimum $\Delta V$ dalam perhitungan volume $V = \pi r^2 h$.</li>
-                    <li>Resistansi total $R$ dari dua resistor $R_1$ dan $R_2$ yang terhubung paralel adalah $\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}$. Tentukan $dR$ dalam terminologi $R_1, R_2, dR_1, dR_2$. (Hint: diferensialkan secara implisit).</li>
-                    <li>Sisi $x$ dan $y$ dari sebuah persegi panjang adalah $x=4$ m dan $y=3$ m. Estimasikan error maksimum dalam perhitungan luas $A=xy$ jika error pengukuran $x$ dan $y$ adalah $\pm 0.01$ m.</li>
+                    <li>Radius $r=5$ cm dan tinggi $h=10$ cm. Error maksimum pengukuran $\pm 0.1$ cm pada $r$ dan $\pm 0.05$ cm pada $h$. Gunakan $dV$ untuk mengestimasi error maksimum volume $V = \pi r^2 h$.</li>
+                    <li>Untuk fungsi $z = f(x, y)$, tuliskan kembali rumus diferensial total $dz$ menggunakan notasi subskrip ($f_x, f_y$).</li>
+                    <li>Sisi $x=4$ m dan $y=3$ m. Estimasikan error maksimum luas $A=xy$ jika error pengukuran $x$ dan $y$ adalah $\pm 0.01$ m.</li>
                     <li>Tentukan $dz$ jika $z = e^x \tan(y)$.</li>
-                    <li>Jika $z = f(x, y)$, tuliskan rumus umum untuk diferensial total $dz$.</li>
+                    <li>Jika $R$ adalah resistansi total dari $R_1$ dan $R_2$ paralel ($\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}$), tentukan $dR$.</li>
                 </ol>
             </section>
 
         </main>
     </div>
+    <!-- AKHIR DARI SECTION SOAL -->
 
-    <!-- Halaman 2: Kunci Jawaban (akan otomatis pindah ke halaman baru saat print) -->
-    <div class="page" id="kunci-jawaban">
+    <!-- AWAL DARI SECTION PEMBAHASAN -->
+    <!-- ID ini akan memastikan section ini dimulai di halaman baru saat print -->
+    <div class="page" id="section-pembahasan">
+        
         <header class="worksheet-header">
             <div>
-                <h1>Kunci Jawaban</h1>
+                <p class="answer-title">Pembahasan & Kunci Jawaban</p>
             </div>
         </header>
 
@@ -234,16 +268,16 @@
             <section>
                 <h2>Topik 1: Fungsi dari Beberapa Variabel</h2>
                 <ol class="jawaban-list">
-                    <li>$V(r, h) = \frac{1}{3} \pi r^2 h$</li>
-                    <li>$c(a, b) = \sqrt{a^2 + b^2}$</li>
-                    <li>$A(x, y) = x^2 + 4xy$ (Alas $x^2$, 4 sisi $xy$)</li>
-                    <li>$f(2, 1) = (2)^2 + 3(2)(1) - (1)^2 = 4 + 6 - 1 = 9$</li>
-                    <li>$f(8, 2) = \frac{8}{(2)^2} = \frac{8}{4} = 2$</li>
-                    <li>$g(1, 2, 2) = \sqrt{1^2 + 2^2 + 2^2} = \sqrt{1 + 4 + 4} = \sqrt{9} = 3$</li>
-                    <li>$h(5, e) = 5 \ln(e) = 5(1) = 5$</li>
-                    <li>$f(\frac{\pi}{2}, 0) = \sin(\frac{\pi}{2} + 0) = \sin(\frac{\pi}{2}) = 1$</li>
-                    <li>$f(0, \pi) = e^{-0} \cos(\pi) = (1)(-1) = -1$</li>
-                    <li>Independen: $K$ (Modal) dan $L$ (Tenaga Kerja). Dependen: $P$ (Produksi).</li>
+                    <li><span class="kunci">$V(r, h) = \frac{1}{3} \pi r^2 h$</span></li>
+                    <li><span class="kunci">$c(a, b) = \sqrt{a^2 + b^2}$</span></li>
+                    <li><span class="kunci">$A(x, y) = x^2 + 4xy$</span> (Alas persegi $x^2$ dan empat sisi $xy$)</li>
+                    <li><span class="kunci">$f(2, 1) = 9$</span> ($2^2 + 3(2)(1) - 1^2 = 4 + 6 - 1 = 9$)</li>
+                    <li><span class="kunci">$f(8, 2) = 2$</span> ($\frac{8}{2^2} = \frac{8}{4} = 2$)</li>
+                    <li><span class="kunci">$g(1, 2, 2) = 3$</span> ($\sqrt{1^2+2^2+2^2} = \sqrt{1+4+4} = \sqrt{9} = 3$)</li>
+                    <li><span class="kunci">$h(5, e) = 5$</span> ($5 \ln(e) = 5 \cdot 1 = 5$)</li>
+                    <li><span class="kunci">$f(\frac{\pi}{2}, 0) = 1$</span> ($\sin(\frac{\pi}{2} + 0) = \sin(\frac{\pi}{2}) = 1$)</li>
+                    <li><span class="kunci">$f(0, \pi) = -1$</span> ($e^0 \cos(\pi) = 1 \cdot (-1) = -1$)</li>
+                    <li><span class="kunci">Independen: $K$ (Modal) dan $L$ (Tenaga Kerja). Dependen: $P$ (Produksi).</span></li>
                 </ol>
             </section>
 
@@ -251,33 +285,33 @@
             <section>
                 <h2>Topik 2: Domain</h2>
                 <ol class="jawaban-list">
-                    <li>$D = \{(x, y) | x \in \mathbb{R}, y \in \mathbb{R}\}$ (Seluruh bidang $xy$)</li>
-                    <li>$D = \{(x, y) | x \in \mathbb{R}, y \in \mathbb{R}\}$ (Seluruh bidang $xy$)</li>
-                    <li>$x - 1 \ge 0 \implies x \ge 1$. $D = \{(x, y) | x \ge 1\}$ (Setengah bidang di kanan $x=1$)</li>
-                    <li>$y - x^2 \ge 0 \implies y \ge x^2$. $D = \{(x, y) | y \ge x^2\}$ (Region di atas parabola $y=x^2$)</li>
-                    <li>$16 - x^2 - y^2 \ge 0 \implies x^2 + y^2 \le 16$. $D = \{(x, y) | x^2 + y^2 \le 16\}$ (Lingkaran radius 4, termasuk batas)</li>
-                    <li>$x - y \neq 0 \implies y \neq x$. $D = \{(x, y) | y \neq x\}$ (Seluruh bidang $xy$ kecuali garis $y=x$)</li>
-                    <li>$x^2 + y^2 \neq 0$. Ini hanya terjadi di (0,0). $D = \{(x, y) | (x, y) \neq (0, 0)\}$ (Seluruh bidang $xy$ kecuali titik asal)</li>
-                    <li>$x + y > 0 \implies y > -x$. $D = \{(x, y) | y > -x\}$ (Setengah bidang di atas garis $y=-x$)</li>
-                    <li>$y^2 - x > 0 \implies x < y^2$. $D = \{(x, y) | x < y^2\}$ (Region di kiri parabola $x=y^2$)</li>
-                    <li>Perlu $x \ge 0$ (karena akar) dan $y \neq 0$ (karena penyebut). $D = \{(x, y) | x \ge 0, y \neq 0\}$</li>
+                    <li><span class="kunci">$D = \{(x, y) | x \in \mathbb{R}, y \in \mathbb{R}\}$</span> (Seluruh bidang $xy$)</li>
+                    <li><span class="kunci">$D = \{(x, y) | x \in \mathbb{R}, y \in \mathbb{R}\}$</span> (Seluruh bidang $xy$)</li>
+                    <li><span class="kunci">$D = \{(x, y) | x - 1 \ge 0 \implies x \ge 1\}$</span> (Setengah bidang di sebelah kanan garis vertikal $x=1$, termasuk garisnya)</li>
+                    <li><span class="kunci">$D = \{(x, y) | y - x^2 \ge 0 \implies y \ge x^2\}$</span> (Daerah di atas atau pada parabola $y=x^2$)</li>
+                    <li><span class="kunci">$D = \{(x, y) | 16 - x^2 - y^2 \ge 0 \implies x^2 + y^2 \le 16\}$</span> (Daerah di dalam atau pada lingkaran radius 4, termasuk batas)</li>
+                    <li><span class="kunci">$D = \{(x, y) | x - y \neq 0 \implies y \neq x\}$</span> (Seluruh bidang $xy$ kecuali garis $y=x$)</li>
+                    <li><span class="kunci">$D = \{(x, y) | x^2 + y^2 \neq 0 \implies (x, y) \neq (0, 0)\}$</span> (Seluruh bidang $xy$ kecuali titik asal)</li>
+                    <li><span class="kunci">$D = \{(x, y) | x + y > 0 \implies y > -x\}$</span> (Daerah di atas garis $y=-x$, tidak termasuk garisnya)</li>
+                    <li><span class="kunci">$D = \{(x, y) | y^2 - x > 0 \implies x < y^2\}$</span> (Daerah di "kiri" parabola $x=y^2$, tidak termasuk garisnya)</li>
+                    <li><span class="kunci">$D = \{(x, y) | x \ge 0 \text{ dan } y \neq 0\}$</span> (Setengah bidang kanan, termasuk sumbu y, tetapi tidak termasuk sumbu x)</li>
                 </ol>
             </section>
 
             <!-- Jawaban Topik 3 -->
             <section>
-                <h2>Topik 3: Pengantar Turunan Parsial (Konseptual)</h2>
+                <h2>Topik 3: Pengantar Turunan Parsial</h2>
                 <ol class="jawaban-list">
-                    <li>Laju perubahan fungsi $f$ terhadap $x$, dengan menganggap $y$ konstan. Secara geometris, ini adalah kemiringan garis singgung pada permukaan $z=f(x,y)$ di irisan bidang $y=konstan$.</li>
-                    <li>Variabel $x$ (dan $z$ jika ada).</li>
-                    <li>Benar. $y$ diperlakukan sebagai koefisien konstan dari $x^2$.</li>
-                    <li>Benar. $x^2$ diperlakukan sebagai koefisien konstan dari $y$.</li>
-                    <li>Salah. Turunan dari konstanta (karena hanya bergantung $y$) terhadap $x$ adalah 0.</li>
-                    <li>Pada titik $(1, 2)$, jika kita bergerak ke arah $x$ positif, suhu meningkat dengan laju 3 derajat per unit.</li>
-                    <li>Pada titik $(a, b)$, jika kita bergerak ke arah $y$ positif (misal, Utara), ketinggian menurun (curam ke bawah) dengan laju 0.1 meter per unit.</li>
-                    <li>$\frac{\partial f}{\partial y}$, $\frac{\partial z}{\partial y}$ (jika $z=f(x,y)$), $D_y f$.</li>
-                    <li>$\frac{\partial f}{\partial x} = \frac{d}{dx}(g(x)) + \frac{\partial}{\partial x}(h(y)) = g'(x) + 0 = g'(x)$.</li>
-                    <li>$\frac{\partial f}{\partial x} = 0$, karena $c$ adalah konstanta terhadap $x$.</li>
+                    <li><span class="kunci">Mengukur laju perubahan fungsi $f$ terhadap $x$ *saja*, sambil mempertahankan nilai $y$ tetap (dianggap konstan).</span></li>
+                    <li><span class="kunci">Variabel $x$ (dianggap konstan).</span></li>
+                    <li><span class="kunci">Jawab: $4xy$.</span> (Turunan $y^3$ (konstan) thd $x$ adalah 0. Turunan $2x^2 y$ thd $x$ adalah $4xy$)</li>
+                    <li><span class="kunci">Jawab: $3y^2 + 2x^2$.</span> (Turunan $y^3$ thd $y$ adalah $3y^2$. Turunan $2x^2 y$ thd $y$ adalah $2x^2$)</li>
+                    <li><span class="kunci">Jika bergerak dari titik $(1, 2)$ ke arah sumbu $x$ positif, suhu meningkat dengan laju 5 derajat per satuan jarak.</span></li>
+                    <li><span class="kunci">$f_x$ atau $\frac{\partial z}{\partial x}$ (jika $z=f(x, y)$) atau $D_x f$.</span></li>
+                    <li><span class="kunci">Benar.</span> (Contoh: $f(x,y) = x^2y$, $f_x(x,y) = 2xy$, yang masih fungsi dari $x$ dan $y$)</li>
+                    <li><span class="kunci">Jawab: $g'(x) \cdot h(y)$.</span> ($h(y)$ diperlakukan sebagai konstanta pengali)</li>
+                    <li><span class="kunci">Jawab: $0$.</span> ($\sin(5)$ adalah konstanta numerik, turunannya terhadap $y$ adalah 0)</li>
+                    <li><span class="kunci">Bidang $y = y_0$ (bidang vertikal yang sejajar dengan bidang $xz$).</span></li>
                 </ol>
             </section>
 
@@ -285,16 +319,16 @@
             <section>
                 <h2>Topik 4: Turunan Parsial (Kalkulasi)</h2>
                 <ol class="jawaban-list">
-                    <li>$f_x = 20x^3 y^3 + 2$, $f_y = 15x^4 y^2 - 1$</li>
-                    <li>$f_x = -\sin(x^2 y) \cdot (2xy) = -2xy \sin(x^2 y)$, $f_y = -\sin(x^2 y) \cdot (x^2) = -x^2 \sin(x^2 y)$</li>
-                    <li>$f_x = \frac{1}{y}$, $f_y = -\frac{x}{y^2}$</li>
-                    <li>$f_x = e^{xy} \cdot y + \frac{1}{x}$, $f_y = e^{xy} \cdot x + 0 = x e^{xy}$</li>
-                    <li>$f_x = 6xy$. $f_x(1, 2) = 6(1)(2) = 12$.</li>
-                    <li>$f_y = x^2 \cos(y)$. $f_y(0, \pi) = (0)^2 \cos(\pi) = 0$.</li>
-                    <li>$f_x = \sin(yz)$, $f_y = x \cos(yz) \cdot z = xz \cos(yz)$, $f_z = x \cos(yz) \cdot y = xy \cos(yz)$</li>
-                    <li>$f_x = 2x e^{yz}$, $f_y = x^2 e^{yz} \cdot z = x^2 z e^{yz}$, $f_z = x^2 e^{yz} \cdot y = x^2 y e^{yz}$</li>
-                    <li>$\frac{\partial z}{\partial x} = -1(x^2 + y^2)^{-2} \cdot (2x) = \frac{-2x}{(x^2 + y^2)^2}$</li>
-                    <li>$\frac{\partial z}{\partial y} = \frac{1}{1 + (x/y)^2} \cdot \left(\frac{-x}{y^2}\right) = \frac{y^2}{y^2 + x^2} \cdot \left(\frac{-x}{y^2}\right) = \frac{-x}{x^2 + y^2}$</li>
+                    <li><span class="kunci">$f_x = 20x^3 y^3 + 2$, $f_y = 15x^4 y^2 - 1$.</span></li>
+                    <li><span class="kunci">$f_x = -\sin(x^2 y) \cdot (2xy)$, $f_y = -\sin(x^2 y) \cdot (x^2)$.</span></li>
+                    <li><span class="kunci">$f_x = \frac{1}{y}$, $f_y = -x y^{-2} = -\frac{x}{y^2}$.</span></li>
+                    <li><span class="kunci">$f_x = e^{xy} \cdot y + \frac{1}{x}$, $f_y = e^{xy} \cdot x$.</span></li>
+                    <li><span class="kunci">$f_x(1, 2) = 12$.</span> ($f_x = 6xy \implies f_x(1, 2) = 6(1)(2) = 12$)</li>
+                    <li><span class="kunci">$f_y(0, \pi) = 0$.</span> ($f_y = x^2 \cos(y) \implies f_y(0, \pi) = 0^2 \cos(\pi) = 0$)</li>
+                    <li><span class="kunci">$f_x = \sin(yz)$, $f_y = x \cos(yz) \cdot z$, $f_z = x \cos(yz) \cdot y$.</span></li>
+                    <li><span class="kunci">$f_x = 2x e^{yz}$, $f_y = x^2 e^{yz} \cdot z$, $f_z = x^2 e^{yz} \cdot y$.</span></li>
+                    <li><span class="kunci">Jawab: $\frac{\partial z}{\partial x} = -(x^2 + y^2)^{-2} \cdot (2x) = \frac{-2x}{(x^2 + y^2)^2}$.</span></li>
+                    <li><span class="kunci">Jawab: $\frac{\partial z}{\partial y} = \frac{1}{1 + (x/y)^2} \cdot (-\frac{x}{y^2}) = \frac{y^2}{y^2 + x^2} \cdot (-\frac{x}{y^2}) = \frac{-x}{x^2 + y^2}$.</span></li>
                 </ol>
             </section>
 
@@ -302,24 +336,27 @@
             <section>
                 <h2>Topik 5: Diferensial Total</h2>
                 <ol class="jawaban-list">
-                    <li>$dz = (3x^2 y^2) dx + (2x^3 y) dy$</li>
-                    <li>$dz = (1 \cdot \ln(y)) dx + (x \cdot \frac{1}{y}) dy = \ln(y) dx + \frac{x}{y} dy$</li>
-                    <li>$dw = (2xy z^3) dx + (x^2 z^3) dy + (3x^2 y z^2) dz$</li>
-                    <li>$dz = (2x) dx + (4y) dy$. Pada $(1, 1)$, $dx = 0.05$, $dy = -0.05$. $dz = (2(1))(0.05) + (4(1))(-0.05) = 0.1 - 0.2 = -0.1$.</li>
-                    <li>$f_x = \frac{x}{\sqrt{x^2+y^2}}$, $f_y = \frac{y}{\sqrt{x^2+y^2}}$. Pada (3, 4), $\sqrt{x^2+y^2}=5$. $f_x = 3/5$, $f_y = 4/5$. $dx = 0.01$, $dy = -0.02$. $dz = (\frac{3}{5})(0.01) + (\frac{4}{5})(-0.02) = \frac{0.03 - 0.08}{5} = \frac{-0.05}{5} = -0.01$.</li>
-                    <li>$V_r = 2\pi rh$, $V_h = \pi r^2$. $V_r(5, 10) = 2\pi(5)(10) = 100\pi$. $V_h(5, 10) = \pi(5)^2 = 25\pi$. $dV = (100\pi) dr + (25\pi) dh = 100\pi(0.1) + 25\pi(0.05) = 10\pi + 1.25\pi = 11.25\pi$ cm$^3$.</li>
-                    <li>Diferensialkan: $-R^{-2} dR = -R_1^{-2} dR_1 - R_2^{-2} dR_2$. Kalikan $-R^2$: $dR = (\frac{R}{R_1})^2 dR_1 + (\frac{R}{R_2})^2 dR_2$.</li>
-                    <li>$dA = A_x dx + A_y dy = y dx + x dy$. $dA = (3)(0.01) + (4)(0.01) = 0.03 + 0.04 = 0.07$ m$^2$.</li>
-                    <li>$dz = (e^x \tan(y)) dx + (e^x \sec^2(y)) dy$</li>
-                    <li>$dz = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy$</li>
+                    <li><span class="kunci">$dz = \frac{\partial z}{\partial x} dx + \frac{\partial z}{\partial y} dy = (3x^2 y^2) dx + (2x^3 y) dy$.</span></li>
+                    <li><span class="kunci">$dz = \frac{\partial z}{\partial x} dx + \frac{\partial z}{\partial y} dy = (\ln(y)) dx + (\frac{x}{y}) dy$.</span></li>
+                    <li><span class="kunci">$dw = \frac{\partial w}{\partial x} dx + \frac{\partial w}{\partial y} dy + \frac{\partial w}{\partial z} dz = (2xy z^3) dx + (x^2 z^3) dy + (3x^2 y z^2) dz$.</span></li>
+                    <li><span class="kunci">Estimasi $\Delta z \approx dz = -0.1$.</span> ($dx = 0.05$, $dy = -0.05$. $dz = 2x dx + 4y dy = 2(1)(0.05) + 4(1)(-0.05) = 0.1 - 0.2 = -0.1$)</li>
+                    <li><span class="kunci">Estimasi $\Delta z \approx dz = -0.01$.</span> ($dx = 0.01$, $dy = -0.02$. $dz = \frac{x}{\sqrt{x^2+y^2}} dx + \frac{y}{\sqrt{x^2+y^2}} dy = \frac{3}{5}(0.01) + \frac{4}{5}(-0.02) = 0.006 - 0.016 = -0.01$)</li>
+                    <li><span class="kunci">Error Maksimum $dV \approx 11.25\pi$ cm$^3$.</span> ($dr = \pm 0.1$, $dh = \pm 0.05$. $dV = (2\pi rh) dr + (\pi r^2) dh = 2\pi(5)(10)(0.1) + \pi(5)^2(0.05) = 10\pi + 1.25\pi = 11.25\pi$)</li>
+                    <li><span class="kunci">$dz = f_x(x, y) dx + f_y(x, y) dy$.</span></li>
+                    <li><span class="kunci">Error Maksimum $dA \approx 0.07$ m$^2$.</span> ($dx = \pm 0.01$, $dy = \pm 0.01$. $dA = y dx + x dy = (3)(0.01) + (4)(0.01) = 0.03 + 0.04 = 0.07$)</li>
+                    <li><span class="kunci">$dz = (e^x \tan(y)) dx + (e^x \sec^2(y)) dy$.</span></li>
+                    <li><span class="kunci">Turunkan $\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}$ secara implisit: $-\frac{1}{R^2} dR = -\frac{1}{R_1^2} dR_1 - \frac{1}{R_2^2} dR_2$. Maka, $dR = R^2 (\frac{dR_1}{R_1^2} + \frac{dR_2}{R_2^2})$.</span></li>
                 </ol>
             </section>
         </main>
     </div>
+    <!-- AKHIR DARI SECTION PEMBAHASAN -->
+
 
     <!-- Script untuk menjalankan KaTeX -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // KaTeX rendering logic
             renderMathInElement(document.body, {
                 delimiters: [
                     {left: "$$", right: "$$", display: true},
@@ -327,10 +364,11 @@
                     {left: "\\(", right: "\\)", display: false},
                     {left: "\\[", right: "\\]", display: true}
                 ],
-                // Pastikan KaTeX tidak mengabaikan tag <code>
+                // Abaikan tag tertentu agar tidak di-render
                 ignoredTags: ["script", "noscript", "style", "textarea", "pre", "option"]
             });
         });
     </script>
 </body>
 </html>
+
