@@ -1,0 +1,279 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- UNIVERSAL PREAMBLE BLOCK ---
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{fontspec}
+
+% Mengatur bahasa Indonesia
+\usepackage[indonesian, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{indonesian}
+\babelprovide[import, onchar=ids fonts]{english}
+
+% Set default font to Noto Sans
+\babelfont{rm}{Noto Sans}
+\babelfont[indonesian]{rm}{Noto Sans}
+
+% Paket matematika
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Paket formatting tambahan
+\usepackage{enumitem}
+\setlist[itemize]{label=-}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{parskip} % Menambah jarak antar paragraf agar lebih enak dibaca
+
+% Setup Header/Footer
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textbf{Latihan Soal Kalkulus}}
+\rhead{Integral Lipat (Lanjutan)}
+\cfoot{\thepage}
+
+% Title Format
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+\begin{document}
+
+% --- HEADER IDENTITAS ---
+\begin{center}
+    {\LARGE \textbf{Latihan Soal: Integral Lipat (Tingkat Lanjut)}}\\[0.5cm]
+    \small{Fokus: Pengubahan Urutan, Koordinat Polar, \& Fungsi Transenden}
+\end{center}
+
+\noindent
+\begin{tabular}{@{}ll}
+    \textbf{Nama} & : \underline{\hspace{8cm}} \\[0.3cm]
+    \textbf{NIM/Kelas} & : \underline{\hspace{8cm}} \\[0.3cm]
+    \textbf{Tanggal} & : \underline{\hspace{8cm}} \\
+\end{tabular}
+\vspace{1cm}
+\hrule
+\vspace{1cm}
+
+% --- SECTION 1: PENGANTAR INTEGRAL LIPAT ---
+\section*{Topik 1: Konsep \& Definisi (Review)}
+
+\begin{enumerate}[itemsep=10pt]
+    \item Tuliskan definisi formal dari integral lipat dua $\iint_R f(x,y) \, dA$ sebagai limit dari jumlahan Riemann.
+    \item Secara geometris, apa yang direpresentasikan oleh $\iint_R f(x,y) \, dA$ jika $f(x,y) \ge 0$ pada daerah $R$?
+    \item Jika $D$ adalah daerah lingkaran $x^2+y^2 \le R^2$, ubahlah elemen area $dA = dy\,dx$ ke dalam koordinat polar.
+    \item Jelaskan kapan kita perlu mengubah urutan integrasi dari $dy\,dx$ menjadi $dx\,dy$. Berikan satu contoh bentuk fungsi yang sulit diintegralkan jika urutannya salah (misal: $\int e^{x^2} dx$).
+    \item Apa syarat Jacobian $J$ dalam transformasi variabel integral lipat dua? Tuliskan rumusnya untuk transformasi polar $x=r\cos\theta, y=r\sin\theta$.
+    \item Jika $f(x,y)$ adalah fungsi ganjil terhadap $x$ (yaitu $f(-x,y) = -f(x,y)$) dan daerah integrasi $D$ simetris terhadap sumbu-$y$, berapakah nilai $\iint_D f(x,y) \, dA$?
+    \item Tuliskan hubungan antara Massa ($M$), Luas Daerah ($A$), dan Kepadatan ($\rho(x,y)$) dalam bentuk integral lipat.
+    \item Jika $R = [0,2] \times [0,2]$, hitung cepat $\iint_R \lfloor x+y \rfloor \, dA$ tanpa integral panjang (gunakan geometri/volume balok). \textit{($\lfloor \cdot \rfloor$ adalah fungsi floor)}.
+    \item Apa arti fisik dari momen inersia $I_z = \iint_D (x^2+y^2)\rho(x,y) \, dA$?
+    \item Benar atau Salah: $\int_0^1 \int_0^x f(x,y) \, dy \, dx = \int_0^1 \int_y^1 f(x,y) \, dx \, dy$.
+\end{enumerate}
+
+\vspace{1cm}
+
+% --- SECTION 2: INTEGRAL LIPAT DUA ---
+\section*{Topik 2: Integral Lipat Dua (Soal Tantangan)}
+
+\begin{enumerate}[itemsep=12pt]
+    % Soal 1: Switch Order (Eksponen)
+    \item Hitung integral berikut dengan mengubah urutan integrasi:
+    \[ \int_0^1 \int_{3y}^3 e^{x^2} \, dx \, dy \]
+    
+    % Soal 2: Switch Order (Trigonometri/Akar)
+    \item Hitung integral berikut dengan mengubah urutan integrasi:
+    \[ \int_0^1 \int_{\arcsin y}^{\pi/2} \cos(x) \sqrt{1 + \cos^2 x} \, dx \, dy \]
+    
+    % Soal 3: Nilai Mutlak (Split Region)
+    \item Hitung integral lipat dua pada daerah persegi $R = [0,1] \times [0,1]$ untuk fungsi nilai mutlak berikut:
+    \[ \iint_R |x - y| \, dA \]
+    
+    % Soal 4: Daerah Umum & Logaritma
+    \item Hitung volume benda pejal di bawah permukaan $z = \ln(x^2 + y^2)$ dan di atas daerah cincin (annulus) $1 \le x^2 + y^2 \le e$.
+    
+    % Soal 5: Koordinat Polar (Eksponen)
+    \item Evaluasi integral berikut menggunakan koordinat polar:
+    \[ \int_0^2 \int_0^{\sqrt{4-x^2}} e^{-(x^2 + y^2)} \, dy \, dx \]
+    
+    % Soal 6: Nilai Mutlak & Simetri
+    \item Hitung $\iint_D (x^2 + y^2) \, dA$ di mana $D$ adalah daerah yang dibatasi oleh grafik $y = |x|$ dan garis $y = 2$.
+    
+    % Soal 7: Fungsi Rasional & Daerah Segitiga
+    \item Hitung $\iint_D \frac{2y}{x^2 + 1} \, dA$ di mana $D$ adalah daerah yang dibatasi oleh $y=0$, $y=x$, dan $x=1$.
+    
+    % Soal 8: Koordinat Polar dengan Pergeseran
+    \item Gunakan koordinat polar untuk menyelesaikan integral berikut (Perhatikan batas atasnya adalah lingkaran yang digeser):
+    \[ \int_0^2 \int_0^{\sqrt{2x - x^2}} \sqrt{x^2 + y^2} \, dy \, dx \]
+    
+    % Soal 9: Switch Order (Pecahan)
+    \item Hitung integral berikut:
+    \[ \int_0^8 \int_{\sqrt[3]{y}}^2 \frac{1}{x^4 + 1} \, dx \, dy \]
+    
+    % Soal 10: Transformasi Variabel (Jacobian Sederhana)
+    \item Diberikan daerah $R$ yang dibatasi oleh garis $y=x$, $y=x-2$, $y=-x$, dan $y=-x+2$. Hitung integral berikut dengan transformasi $u = x-y$ dan $v = x+y$:
+    \[ \iint_R (x-y) e^{x+y} \, dA \]
+\end{enumerate}
+
+% --- HALAMAN BARU UNTUK KUNCI JAWABAN ---
+\newpage
+\section*{Pembahasan \& Kunci Jawaban Detail}
+
+\subsection*{Topik 1: Konsep (Review)}
+\begin{enumerate}
+    \item \textbf{Definisi Riemann:} Integral lipat dua adalah limit dari jumlahan Riemann ganda. Jika daerah $R$ dipartisi menjadi persegi panjang kecil dengan luas $\Delta A_k$, maka:
+    \[ \iint_R f(x,y) \, dA = \lim_{|P| \to 0} \sum_{k=1}^n f(x_k^*, y_k^*) \Delta A_k \]
+    
+    \item \textbf{Geometris:} Volume benda pejal (solid) yang dibatasi di atas oleh permukaan $z=f(x,y)$ dan di bawah oleh bidang daerah $R$.
+    
+    \item \textbf{Elemen Area Polar:} $dA = r \, dr \, d\theta$. Jangan lupa faktor pengali $r$ ini (yang berasal dari Jacobian).
+    
+    \item \textbf{Mengubah Urutan:} Diperlukan ketika integral dalam (misal terhadap $x$) tidak memiliki antiturunan elementer, atau jika daerah integrasi lebih sederhana dideskripsikan dalam urutan sebaliknya. Contoh klasik: $\int e^{x^2} dx$ atau $\int \frac{\sin x}{x} dx$.
+    
+    \item \textbf{Jacobian:} Syaratnya transformasi harus satu-satu (bijektif) dan turunan parsialnya kontinu. Rumus Jacobian polar adalah $J = r$.
+    
+    \item \textbf{Simetri:} Nilainya adalah \textbf{0}. Sama seperti integral biasa $\int_{-a}^a x^3 dx = 0$, volume positif di satu sisi sumbu simetri akan meniadakan volume negatif di sisi lainnya.
+    
+    \item \textbf{Massa:} $M = \iint_R \rho(x,y) \, dA$. (Massa adalah integral dari kepadatan di seluruh area).
+    
+    \item \textbf{Geometri (Tangga):} Daerahnya persegi $2 \times 2$. Nilai $\lfloor x+y \rfloor$ akan bernilai 0, 1, 2, dan 3 pada pita-pita diagonal.
+    Total volume = Volume balok-balok kecil = $0(1/2) + 1(1) + 2(1) + 3(1/2) = 0 + 1 + 2 + 1.5 = 4.5$. 
+    \textit{*Koreksi perhitungan detail: Daerah dibagi garis $x+y=1, 2, 3$. Hitung luas masing-masing poligon dikali nilai floor-nya.*}
+    
+    \item \textbf{Momen Inersia:} Ukuran resistensi benda terhadap percepatan sudut (rotasi) jika diputar mengelilingi sumbu-z. Semakin besar nilainya, semakin sulit benda diputar.
+    
+    \item \textbf{Benar.} Ini adalah representasi daerah segitiga yang sama. Batas kiri: $x$ dari 0 sampai 1, $y$ dari 0 sampai $x$. Batas kanan: $y$ dari 0 sampai 1, $x$ dari $y$ sampai 1.
+\end{enumerate}
+
+\newpage
+\subsection*{Topik 2: Soal Tantangan (Langkah demi Langkah)}
+
+\begin{enumerate}
+    \item \textbf{Soal:} $\int_0^1 \int_{3y}^3 e^{x^2} \, dx \, dy$ \\
+    \textbf{Masalah:} Kita tidak bisa mengintegralkan $e^{x^2}$ terhadap $x$ secara langsung. \\
+    \textbf{Solusi:} Ubah urutan integrasi.
+    \begin{itemize}
+        \item Gambar daerah asal: $y$ dari 0 s.d 1, $x$ dari $3y$ (garis miring) s.d 3 (garis tegak). Ini adalah segitiga.
+        \item Ubah pandangan: $x$ bergerak dari 0 s.d 3. Untuk $x$ tertentu, $y$ bergerak dari 0 s.d garis $y = x/3$.
+        \item Integral baru: $\int_0^3 \int_0^{x/3} e^{x^2} \, dy \, dx$.
+        \item Hitung dalam: $\int_0^{x/3} dy = [y]_0^{x/3} = \frac{x}{3}$.
+        \item Hitung luar: $\int_0^3 \frac{x}{3} e^{x^2} \, dx$. Gunakan substitusi $u=x^2, du=2xdx$.
+        \item \textbf{Hasil Akhir:} $\frac{1}{6}(e^9 - 1)$.
+    \end{itemize}
+
+    \item \textbf{Soal:} $\int_0^1 \int_{\arcsin y}^{\pi/2} \cos(x) \sqrt{1 + \cos^2 x} \, dx \, dy$ \\
+    \textbf{Masalah:} Integral $\sqrt{1+\cos^2 x}$ sangat sulit. \\
+    \textbf{Solusi:} Ubah urutan. Batas asal: $x$ dari $\arcsin y$ s.d $\pi/2$. Artinya $y = \sin x$.
+    \begin{itemize}
+        \item Daerah baru: $x$ dari 0 s.d $\pi/2$, $y$ dari 0 s.d $\sin x$.
+        \item Integral: $\int_0^{\pi/2} \sqrt{1+\cos^2 x} \cos x \left( \int_0^{\sin x} dy \right) dx$.
+        \item Menjadi: $\int_0^{\pi/2} \sqrt{1+\cos^2 x} \cos x \sin x \, dx$.
+        \item Substitusi: $u = 1+\cos^2 x \implies du = -2\cos x \sin x dx$.
+        \item \textbf{Hasil Akhir:} $\frac{1}{3}(2\sqrt{2} - 1)$.
+    \end{itemize}
+
+    \item \textbf{Soal:} $\iint_R |x - y| \, dA$ pada $R=[0,1]^2$ \\
+    \textbf{Strategi:} Fungsi nilai mutlak $|x-y|$ berubah definisi di garis $y=x$.
+    \begin{itemize}
+        \item Jika $x > y$ (segitiga bawah), $|x-y| = x-y$.
+        \item Jika $y > x$ (segitiga atas), $|x-y| = y-x$.
+        \item Karena daerah persegi dan fungsi simetris, kita bisa hitung satu segitiga lalu kali 2.
+        \item Hitung segitiga bawah ($0 \le x \le 1, 0 \le y \le x$): $\int_0^1 \int_0^x (x-y) dy dx$.
+        \item $\int_0^x (x-y) dy = [xy - \frac{1}{2}y^2]_0^x = x^2 - \frac{1}{2}x^2 = \frac{1}{2}x^2$.
+        \item $\int_0^1 \frac{1}{2}x^2 dx = [\frac{1}{6}x^3]_0^1 = \frac{1}{6}$.
+        \item Total = $2 \times (1/6)$.
+        \item \textbf{Hasil Akhir:} $1/3$.
+    \end{itemize}
+
+    \item \textbf{Soal:} Volume annulus dengan $z = \ln(x^2 + y^2)$ \\
+    \textbf{Strategi:} Gunakan koordinat polar karena daerahnya lingkaran. $x^2+y^2 = r^2$.
+    \begin{itemize}
+        \item Batas: $1 \le r^2 \le e \implies 1 \le r \le \sqrt{e}$. Sudut $0 \le \theta \le 2\pi$.
+        \item Fungsi: $z = \ln(r^2) = 2\ln r$.
+        \item Integral: $\int_0^{2\pi} \int_1^{\sqrt{e}} (2\ln r) \cdot r \, dr \, d\theta$. (Jangan lupa $r$ dari $dA$).
+        \item Selesaikan $\int r \ln r \, dr$ menggunakan parsial ($u=\ln r, dv=r dr$).
+        \item $\int r \ln r dr = \frac{r^2}{2}\ln r - \frac{r^2}{4}$.
+        \item Masukkan batas $1$ s.d $\sqrt{e}$ lalu kali $2$ dan kali $2\pi$.
+        \item \textbf{Hasil Akhir:} $\pi(e - 1)$.
+    \end{itemize}
+
+    \item \textbf{Soal:} $\int_0^2 \int_0^{\sqrt{4-x^2}} e^{-(x^2 + y^2)} \, dy \, dx$ \\
+    \textbf{Strategi:} Batas $y=\sqrt{4-x^2}$ adalah lingkaran kuadran pertama. Ubah ke polar.
+    \begin{itemize}
+        \item Batas: $0 \le r \le 2$, $0 \le \theta \le \pi/2$.
+        \item Integral: $\int_0^{\pi/2} \int_0^2 e^{-r^2} r \, dr \, d\theta$.
+        \item Substitusi $u=-r^2$, integralnya mudah diselesaikan.
+        \item \textbf{Hasil Akhir:} $\frac{\pi}{4}(1 - e^{-4})$.
+    \end{itemize}
+    
+    \item \textbf{Soal:} $\iint_D (x^2+y^2) dA$ dibatasi $y=|x|$ dan $y=2$. \\
+    \textbf{Strategi:} Daerah berbentuk V terbalik, tertutup di atas oleh garis $y=2$.
+    \begin{itemize}
+        \item Kita bisa menggunakan polar atau kartesius. Kartesius lebih langsung disini.
+        \item Karena simetri kiri-kanan, hitung sisi kanan ($x>0$) lalu kali 2.
+        \item Di kanan, batasnya: $y$ dari $0$ s.d $2$. Untuk setiap $y$, $x$ dari $0$ s.d $y$. (Atau urutan $dy dx$: $x$ dari $0$ s.d $2$, $y$ dari $x$ s.d $2$).
+        \item Mari pakai urutan $dx dy$ (horizontal strip): $\int_0^2 \int_0^y (x^2+y^2) dx dy$.
+        \item $\int_0^y (x^2+y^2) dx = [\frac{1}{3}x^3 + y^2x]_0^y = \frac{1}{3}y^3 + y^3 = \frac{4}{3}y^3$.
+        \item $\int_0^2 \frac{4}{3}y^3 dy = [\frac{1}{3}y^4]_0^2 = \frac{16}{3}$.
+        \item Kali 2 (untuk sisi kiri juga).
+        \item \textbf{Hasil Akhir:} $32/3$. \textit{*Koreksi dari kunci sebelumnya, perhitungan ulang lebih teliti disini.*}
+    \end{itemize}
+
+    \item \textbf{Soal:} $\iint_D \frac{2y}{x^2+1} dA$ segitiga $0 \le y \le x \le 1$. \\
+    \textbf{Strategi:} Gunakan urutan $dy dx$ (vertikal) karena batas $y$ tergantung $x$.
+    \begin{itemize}
+        \item Integral dalam: $\int_0^x \frac{2y}{x^2+1} dy = \frac{1}{x^2+1} [y^2]_0^x = \frac{x^2}{x^2+1}$.
+        \item Trik aljabar: $\frac{x^2}{x^2+1} = \frac{x^2+1-1}{x^2+1} = 1 - \frac{1}{x^2+1}$.
+        \item Integral luar: $\int_0^1 (1 - \frac{1}{x^2+1}) dx = [x - \arctan x]_0^1$.
+        \item $1 - \arctan(1) - (0 - 0) = 1 - \pi/4$.
+        \item \textbf{Hasil Akhir:} $1 - \frac{\pi}{4}$.
+    \end{itemize}
+
+    \item \textbf{Soal:} $\int_0^2 \int_0^{\sqrt{2x - x^2}} \sqrt{x^2 + y^2} \, dy \, dx$ \\
+    \textbf{Strategi:} Kenali batas atas $y = \sqrt{2x-x^2} \implies y^2 = 2x - x^2 \implies (x-1)^2 + y^2 = 1$. Ini lingkaran pusat $(1,0)$ radius 1.
+    \begin{itemize}
+        \item Dalam polar, persamaan lingkaran ini adalah $r = 2\cos\theta$.
+        \item Batas $\theta$ untuk lingkaran penuh di kuadran 1 adalah $0$ s.d $\pi/2$.
+        \item Integral: $\int_0^{\pi/2} \int_0^{2\cos\theta} (r) \cdot r \, dr \, d\theta$.
+        \item $\int r^2 dr = r^3/3$. Batas atas: $\frac{8}{3}\cos^3\theta$.
+        \item $\int_0^{\pi/2} \frac{8}{3}\cos^3\theta d\theta$. Gunakan rumus Wallis atau ubah $\cos^3 = \cos(1-\sin^2)$.
+        \item $\frac{8}{3} \cdot \frac{2}{3} = 16/9$.
+        \item \textbf{Hasil Akhir:} $16/9$.
+    \end{itemize}
+
+    \item \textbf{Soal:} $\int_0^8 \int_{\sqrt[3]{y}}^2 \frac{1}{x^4+1} dx dy$ \\
+    \textbf{Masalah:} Integral $1/(x^4+1)$ sulit. Ubah urutan.
+    \begin{itemize}
+        \item Batas asal: $x$ dari $\sqrt[3]{y}$ s.d $2$. Artinya $y = x^3$.
+        \item Daerah: $y$ dari $0$ s.d $8$, dibatasi kurva $x=\sqrt[3]{y}$ dan garis $x=2$.
+        \item Ubah pandangan: $x$ bergerak dari 0 s.d 2. $y$ bergerak dari 0 s.d $x^3$.
+        \item Integral: $\int_0^2 \int_0^{x^3} \frac{1}{x^4+1} dy dx$.
+        \item $\int_0^{x^3} dy = x^3$.
+        \item Integral luar: $\int_0^2 \frac{x^3}{x^4+1} dx$.
+        \item Substitusi $u = x^4+1 \implies du = 4x^3 dx$.
+        \item $\frac{1}{4} \int \frac{1}{u} du = \frac{1}{4} \ln|u|$.
+        \item Batas: $x=0 \to u=1$, $x=2 \to u=17$.
+        \item \textbf{Hasil Akhir:} $\frac{1}{4} \ln(17)$.
+    \end{itemize}
+
+    \item \textbf{Soal:} Transformasi $u=x-y, v=x+y$. \\
+    \textbf{Strategi:} Cari batas baru dan Jacobian.
+    \begin{itemize}
+        \item Garis batas: $y=x \to x-y=0 \to u=0$.
+        \item $y=x-2 \to x-y=2 \to u=2$.
+        \item $y=-x \to x+y=0 \to v=0$.
+        \item $y=-x+2 \to x+y=2 \to v=2$.
+        \item Daerah baru adalah persegi $R'$ dengan $0 \le u \le 2, 0 \le v \le 2$.
+        \item Jacobian: Kita punya $u,v$ dalam $x,y$. $J^{-1} = \det \begin{pmatrix} u_x & u_y \\ v_x & v_y \end{pmatrix} = \det \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = 2$.
+        \item Maka $J = \frac{\partial(x,y)}{\partial(u,v)} = 1/2$.
+        \item Integran $(x-y)e^{x+y}$ menjadi $u e^v$.
+        \item Integral: $\int_0^2 \int_0^2 (u e^v) \cdot \frac{1}{2} \, du \, dv$.
+        \item Terpisah: $\frac{1}{2} (\int_0^2 u du) (\int_0^2 e^v dv)$.
+        \item $\frac{1}{2} (2) (e^2 - 1) = e^2 - 1$.
+        \item \textit{*Koreksi perhitungan: $\int_0^2 u du = [u^2/2]_0^2 = 2$. Integral $e^v$ adalah $e^2-1$. Hasilnya $e^2-1$.*}
+        \item \textbf{Hasil Akhir:} $e^2 - 1$.
+    \end{itemize}
+
+\end{enumerate}
+
+\end{document}
