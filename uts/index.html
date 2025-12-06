@@ -1,0 +1,132 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- UNIVERSAL PREAMBLE BLOCK ---
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{fontspec}
+
+\usepackage[indonesian, bidi=basic, provide=*]{babel}
+
+\babelprovide[import, onchar=ids fonts]{indonesian}
+\babelprovide[import, onchar=ids fonts]{english}
+
+% Set default/Latin font to Sans Serif in the main (rm) slot
+\babelfont{rm}{Noto Sans}
+
+% Add because main language is not English
+\usepackage{enumitem}
+\setlist[itemize]{label=-}
+
+% --- MATHEMATICS PACKAGES ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx} % Jika nanti butuh gambar
+
+% --- TITLE INFO ---
+\title{\textbf{Latihan Soal Ujian Tengah Semester (Revisi)}\\Kalkulus Peubah Banyak}
+\author{Dosen Pengampu: [Nama Dosen]}
+\date{Semester Ganjil 2024/2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{Petunjuk Pengerjaan}
+\begin{itemize}
+    \item \textbf{Waktu:} 120 Menit.
+    \item Soal disusun secara \textit{scaffolded} (bertahap), dimulai dari pemahaman konsep dasar hingga aplikasi kompleks.
+    \item Kerjakan dengan runtut dan sertakan argumen matematika yang jelas.
+\end{itemize}
+
+\hrule
+\vspace{0.5cm}
+
+\section*{Bagian 1: Konsep Dasar, Limit, dan Turunan Parsial}
+
+\begin{enumerate}
+    % Soal 1: Domain dan Peta Kontur (Scaffolding Dasar)
+    \item \textbf{(Domain dan Peta Kontur)} Tinjau fungsi $f(x,y) = \ln(y - x^2)$.
+    \begin{enumerate}[label=\alph*.]
+        \item Tentukan dan gambarkan sketsa \textit{domain} (daerah asal) alami dari fungsi tersebut pada bidang $xy$.
+        \item Gambarkan \textit{peta kontur} (kurva ketinggian) untuk $k = 0$ dan $k = \ln 2$.
+    \end{enumerate}
+
+    % Soal 2: Limit (Analisis)
+    \item \textbf{(Analisis Kontinuitas)} Diberikan fungsi pecahan rasional:
+    \[ f(x,y) = \frac{x^2 \sin^2(y)}{x^2 + 2y^2} \]
+    \begin{enumerate}[label=\alph*.]
+        \item Apakah $\lim_{(x,y) \to (0,0)} f(x,y)$ ada? Buktikan jawaban Anda (bisa menggunakan koordinat polar atau Teorema Apit).
+        \item Jika kita mendefinisikan $f(0,0) = 0$, apakah fungsi tersebut menjadi kontinu di titik asal? Jelaskan.
+    \end{enumerate}
+
+    % Soal 3: Turunan Parsial Tingkat Tinggi (PDE)
+    \item \textbf{(Persamaan Gelombang)} Diberikan fungsi gelombang $u(x,t) = \sin(kx) \cos(akt)$, di mana $k$ dan $a$ adalah konstanta positif.
+    \begin{enumerate}[label=\alph*.]
+        \item Tentukan turunan parsial kedua $u_{tt}$ dan $u_{xx}$.
+        \item Tunjukkan bahwa fungsi tersebut memenuhi Persamaan Gelombang satu dimensi: $\frac{\partial^2 u}{\partial t^2} = a^2 \frac{\partial^2 u}{\partial x^2}$.
+    \end{enumerate}
+
+\section*{Bagian 2: Diferensial, Gradien, dan Bidang Singgung}
+
+    % Soal 4: Aturan Rantai (Fungsi Komposisi)
+    \item \textbf{(Laju Perubahan Tekanan)} Tekanan $P$ (dalam kilopascal) dari suatu gas ideal dirumuskan oleh $P = 8.31 \frac{T}{V}$, di mana $T$ adalah suhu (Kelvin) dan $V$ adalah volume (liter).
+    \begin{enumerate}[label=\alph*.]
+        \item Saat ini, $T = 300 \text{ K}$ dan sedang naik dengan laju $0.1 \text{ K/s}$, sedangkan $V = 100 \text{ L}$ dan sedang bertambah dengan laju $0.2 \text{ L/s}$.
+        \item Gunakan Aturan Rantai untuk menghitung seberapa cepat tekanan $P$ berubah saat ini. Apakah tekanan naik atau turun?
+    \end{enumerate}
+
+    % Soal 5: Gradien dan Turunan Berarah (Analisis Vektor)
+    \item \textbf{(Arah Penurunan Tercepat)} Suhu pada titik $(x,y,z)$ diberikan oleh $W(x,y,z) = 100 e^{-(x^2+y^2+2z^2)}$.
+    \begin{enumerate}[label=\alph*.]
+        \item Tentukan vektor gradien $\nabla W$ di titik $P(1, 1, 1)$.
+        \item Ke arah mana (vektor satuan) seekor nyamuk di titik $P$ harus terbang agar suhu turun paling drastis? Berapa laju penurunan suhunya?
+    \end{enumerate}
+
+    % Soal 6: Bidang Singgung (Implisit)
+    \item \textbf{(Bidang Singgung Permukaan)} Tinjau permukaan yang didefinisikan secara implisit oleh persamaan $x^2 + y^2 - z^2 - 2xy + 4z = 4$.
+    \begin{enumerate}[label=\alph*.]
+        \item Tentukan persamaan bidang singgung pada permukaan tersebut di titik $(2, 4, 6)$.
+        \item Tentukan persamaan garis normal di titik yang sama.
+    \end{enumerate}
+
+\section*{Bagian 3: Optimasi}
+
+    % Soal 7: Pengali Lagrange (Aplikasi C3)
+    \item \textbf{(Optimasi Biaya)} Sebuah tangki silinder tegak tanpa tutup atas akan dibuat untuk menampung volume $1000 \pi \text{ m}^3$. Biaya material alas adalah Rp500.000 per $\text{m}^2$, sedangkan biaya material dinding lengkung adalah Rp200.000 per $\text{m}^2$.
+    \begin{enumerate}[label=\alph*.]
+        \item Gunakan metode Pengali Lagrange untuk menentukan jari-jari $r$ dan tinggi $h$ yang meminimumkan biaya pembuatan.
+        \item Berapa biaya minimum tersebut?
+    \end{enumerate}
+
+\section*{Bagian 4: Integral Lipat}
+
+    % Soal 8: Integral Lipat Dua (Analisis Urutan)
+    \item \textbf{(Manipulasi Integral)} Integral berikut tidak dapat diselesaikan dengan fungsi elementer jika dikerjakan sesuai urutan yang tertulis:
+    \[ \int_{0}^{1} \int_{y}^{1} e^{x^2} \, dx \, dy \]
+    \begin{enumerate}[label=\alph*.]
+        \item Gambarkan daerah integrasinya, lalu tukar urutan integrasinya menjadi $dy \, dx$.
+        \item Selesaikan integral tersebut setelah urutannya ditukar.
+    \end{enumerate}
+
+    % Soal 9: Integral Lipat Dua Koordinat Polar (Aplikasi)
+    \item \textbf{(Volume Benda Putar)} Gunakan koordinat polar untuk menghitung volume benda pejal yang dibatasi di atas oleh paraboloid $z = 10 - 2x^2 - 2y^2$ dan di bawah oleh bidang $z = 2$.
+    \begin{enumerate}[label=\alph*.]
+        \item Tentukan proyeksi daerah potong antara paraboloid dan bidang datar tersebut pada bidang $xy$.
+        \item Hitung volumenya menggunakan integral lipat dua dalam koordinat polar.
+    \end{enumerate}
+
+    % Soal 10: Integral Lipat Tiga (Scaffolded Advance)
+    \item \textbf{(Massa Benda Pejal)} Sebuah benda pejal $E$ di oktan pertama dibatasi oleh silinder $y^2 + z^2 = 9$ dan bidang $x = 0$ serta $x = 2$. Kerapatan massa benda tersebut adalah $\delta(x,y,z) = z$.
+    \begin{enumerate}[label=\alph*.]
+        \item Gambarkan sketsa kasar benda pejal tersebut dan tentukan batas-batas integralnya.
+        \item Hitung massa total benda pejal tersebut menggunakan integral lipat tiga (saran: integralkan terhadap $x$ terlebih dahulu, kemudian gunakan koordinat polar pada bidang $yz$).
+    \end{enumerate}
+
+\end{enumerate}
+
+\vspace{1cm}
+\begin{center}
+    \textit{--- "Mathematics is the language with which God has written the universe." - Galileo ---}
+\end{center}
+
+\end{document}
